@@ -1,10 +1,11 @@
 {
   "kind": "collectionType",
-  "collectionName": "tours",
+  "collectionName": "destinations",
   "info": {
-    "singularName": "tour",
-    "pluralName": "tours",
-    "displayName": "Tour"
+    "singularName": "destination",
+    "pluralName": "destinations",
+    "displayName": "Destination",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +16,7 @@
     }
   },
   "attributes": {
-    "Destination": {
+    "Title": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -30,36 +31,28 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
-    "Spots": {
-      "type": "integer"
-    },
-    "Date": {
-      "type": "date",
+    "Fotos": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ],
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       }
     },
-    "Price": {
-      "type": "decimal"
-    },
-    "Fotos": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": true
-    },
-    "destinations": {
+    "tour": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::destination.destination",
-      "mappedBy": "tour"
+      "relation": "manyToOne",
+      "target": "api::tour.tour",
+      "inversedBy": "destinations"
     }
   }
 }
