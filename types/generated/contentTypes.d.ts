@@ -423,6 +423,41 @@ export interface ApiDestinationDestination extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTourRequestTourRequest extends Struct.CollectionTypeSchema {
+  collectionName: 'tour_requests';
+  info: {
+    description: '';
+    displayName: 'Tour Request';
+    pluralName: 'tour-requests';
+    singularName: 'tour-request';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    lastname: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tour-request.tour-request'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    paymentMethod: Schema.Attribute.String;
+    peopleNumber: Schema.Attribute.Integer;
+    phone: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    tour: Schema.Attribute.Relation<'manyToOne', 'api::tour.tour'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiTourTour extends Struct.CollectionTypeSchema {
   collectionName: 'tours';
   info: {
@@ -471,6 +506,10 @@ export interface ApiTourTour extends Struct.CollectionTypeSchema {
     Price: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     Spots: Schema.Attribute.Integer;
+    tour_requests: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tour-request.tour-request'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -987,6 +1026,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::destination.destination': ApiDestinationDestination;
+      'api::tour-request.tour-request': ApiTourRequestTourRequest;
       'api::tour.tour': ApiTourTour;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
