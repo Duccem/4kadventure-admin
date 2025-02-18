@@ -60,6 +60,12 @@
       "relation": "oneToMany",
       "target": "api::destination.destination",
       "mappedBy": "tour"
+    },
+    "tour_requests": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tour-request.tour-request",
+      "mappedBy": "tour"
     }
   }
 }

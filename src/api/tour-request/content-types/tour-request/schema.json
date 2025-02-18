@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tour_requests",
+  "info": {
+    "singularName": "tour-request",
+    "pluralName": "tour-requests",
+    "displayName": "Tour Request",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "peopleNumber": {
+      "type": "integer"
+    },
+    "email": {
+      "type": "email"
+    },
+    "paymentMethod": {
+      "type": "string"
+    },
+    "tour": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tour.tour",
+      "inversedBy": "tour_requests"
+    }
+  }
+}
